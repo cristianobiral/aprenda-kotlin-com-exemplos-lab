@@ -20,12 +20,42 @@ data class Formacao(
     val nivel: Nivel,
     val conteudos: List<ConteudoEducacional>
 ) {
-
-    val inscritos = mutableListOf<Usuario>()
     
-    fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
+    val inscritos = mutableListOf<Usuario>()
+    val duracaoTotal get() = conteudos.map { it.duracao }.sum()
+    
+    fun matricular(vararg usuarios: Usuario) {
+        
+        inscritos.addAll(usuarios)
+        
+        println()
+        usuarios.forEach {
+        	println("${it.nome} foi matriculado com sucesso!")
+        }
+        
     }
+    
+}
+
+fun exibirFormacao(formacao: Formacao) {
+    
+    println()
+    println("# ${formacao.nome} - ${formacao.stack} - ${formacao.nivel} [total ${formacao.duracaoTotal}h]")
+    
+    val categorias = formacao.conteudos.groupBy { it.categoria }
+    
+    for (categoria in categorias.entries.iterator()) {
+        
+        println("> ${categoria.key.nome} [${categoria.value.size} conteúdo(s)]")
+        for (conteudo in categoria.value) {
+        	println(" - ${conteudo.nome} - ${conteudo.nivel} [${conteudo.duracao}h]")
+        }
+        
+    }
+    
+    val alunos = formacao.inscritos.map { it.nome }.toString()
+    println("Inscritos: $alunos")
+    
 }
 
 fun main() {
