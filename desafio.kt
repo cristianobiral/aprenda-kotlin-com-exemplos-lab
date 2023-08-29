@@ -1,12 +1,25 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
+package me.dio.track
 
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
+enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
+enum class Stack { DEV_BACKEND, DEV_FULLSTACK, ENG_DADOS }
 
-class Usuario
+data class Usuario(val nome: String)
 
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
+data class Categoria(val nome: String)
 
-data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
+data class ConteudoEducacional(
+    val nome: String,
+    val nivel: Nivel,
+    val categoria: Categoria,
+    val duracao: Int = 1
+)
+
+data class Formacao(
+    val nome: String,
+    val stack: Stack,
+    val nivel: Nivel,
+    val conteudos: List<ConteudoEducacional>
+) {
 
     val inscritos = mutableListOf<Usuario>()
     
