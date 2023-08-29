@@ -59,6 +59,38 @@ fun exibirFormacao(formacao: Formacao) {
 }
 
 fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+	
+    // usuários
+    val cristiano = Usuario("Cristiano")
+    val thiago = Usuario("Thiago")
+    val renato = Usuario("Renato")
+    
+    // formação Java
+    val fundamentosJava = Categoria("Fundamentos da Plataforma Java")
+    val pooJava = Categoria("Programação Orientada a Objetos em Java")
+    val conteudoFormacaoJava = listOf(
+        ConteudoEducacional("Introdução à Plataforma Java", Nivel.BASICO, fundamentosJava, 1),
+        ConteudoEducacional("Aprendendo a Sintaxe Java", Nivel.BASICO, fundamentosJava, 5),
+        ConteudoEducacional("Pilares da Programação O.O. em Java", Nivel.INTERMEDIARIO, pooJava, 2)
+    )
+    val formacaoJava = Formacao("Formação Java Developer", Stack.DEV_BACKEND, Nivel.INTERMEDIARIO, conteudoFormacaoJava)
+    
+    formacaoJava.matricular(cristiano, thiago)
+    
+    exibirFormacao(formacaoJava)
+    
+    // formação TypeScript
+    val introducaoTypeScript = Categoria("Introdução ao React com TypeScript")
+    val introducaoNode = Categoria("Introdução ao Node com TypeScript")
+    val conteudoTypeScript = listOf(
+        ConteudoEducacional("Criando Páginas com React e TypeScript", Nivel.INTERMEDIARIO, introducaoTypeScript, 2),
+        ConteudoEducacional("Criando uma Homepage com React", Nivel.AVANCADO, introducaoTypeScript, 1),
+        ConteudoEducacional("Criando a API do Dio Bank com Node", Nivel.AVANCADO, introducaoNode, 1)
+    )
+    val formacaoReact = Formacao("Formação TypeScript Developer", Stack.DEV_FULLSTACK, Nivel.AVANCADO, conteudoTypeScript)
+    
+    formacaoReact.matricular(renato)
+    
+    exibirFormacao(formacaoReact)
+    
 }
